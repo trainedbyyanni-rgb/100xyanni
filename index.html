@@ -4,516 +4,323 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>100X Yanni — Research. Content. Performance.</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    /* ── AGE GATE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body { background: #ffffff; color: #111111; font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+
+    /* AGE GATE */
     #age-gate {
-      position: fixed;
-      inset: 0;
-      background: #fff;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-      padding: 2rem;
+      position: fixed; inset: 0; background: #fff; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; text-align: center; padding: 2rem;
     }
-
-    #age-gate .gate-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.5rem, 8vw, 5rem);
-      letter-spacing: 0.08em;
-      color: #111;
-      margin-bottom: 0.4rem;
+    .gate-logo { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.8rem, 8vw, 5rem); letter-spacing: .08em; color: #111; margin-bottom: .3rem; }
+    .gate-tag  { font-size: .65rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: #bbb; margin-bottom: 2.8rem; }
+    .disc-box  { max-width: 460px; background: #fafafa; border: 1px solid #e8e8e8; padding: 1.5rem 1.8rem; margin-bottom: 1.8rem; text-align: left; }
+    .disc-lbl  { display: block; font-family: 'Bebas Neue', sans-serif; font-size: .6rem; letter-spacing: .22em; color: #999; margin-bottom: .6rem; }
+    .disc-box p { font-size: .76rem; color: #666; line-height: 1.7; }
+    .age-chk   { display: flex; align-items: center; gap: .6rem; margin-bottom: 1.6rem; font-size: .8rem; color: #555; cursor: pointer; max-width: 380px; text-align: left; }
+    .age-chk input { width: 16px; height: 16px; cursor: pointer; accent-color: #111; flex-shrink: 0; }
+    .enter-btn {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .2em;
+      background: #111; color: #fff; border: none; padding: 13px 48px;
+      cursor: pointer; opacity: .25; pointer-events: none; transition: opacity .2s;
     }
+    .enter-btn.ready { opacity: 1; pointer-events: all; }
+    .enter-btn.ready:hover { opacity: .8; }
 
-    #age-gate .gate-tagline {
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #bbb;
-      margin-bottom: 3rem;
-    }
-
-    #age-gate .disclaimer-box {
-      max-width: 480px;
-      background: #fafafa;
-      border: 1px solid #e8e8e8;
-      padding: 1.6rem 2rem;
-      margin-bottom: 2rem;
-      text-align: left;
-    }
-
-    #age-gate .disclaimer-box .d-label {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.22em;
-      color: #999;
-      margin-bottom: 0.8rem;
-      display: block;
-    }
-
-    #age-gate .disclaimer-box p {
-      font-size: 0.78rem;
-      color: #666;
-      line-height: 1.7;
-    }
-
-    #age-gate .age-check {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1.8rem;
-      font-size: 0.82rem;
-      color: #444;
-      cursor: pointer;
-    }
-
-    #age-gate .age-check input {
-      width: 16px;
-      height: 16px;
-      cursor: pointer;
-      accent-color: #111;
-    }
-
-    #age-gate .enter-btn {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1rem;
-      letter-spacing: 0.18em;
-      background: #111;
-      color: #fff;
-      border: none;
-      padding: 14px 48px;
-      cursor: pointer;
-      opacity: 0.3;
-      pointer-events: none;
-      transition: opacity 0.2s;
-    }
-
-    #age-gate .enter-btn.ready {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    #age-gate .enter-btn.ready:hover { opacity: 0.8; }
-
-    /* ── SITE (hidden until gate passed) ── */
+    /* SITE */
     #site { display: none; }
 
-    /* ── HERO ── */
-    .hero {
-      padding: 5rem 2.5rem 4rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      border-bottom: 1px solid var(--border);
+    /* SOCIAL STRIP */
+    .social-strip {
+      display: flex; justify-content: flex-end; align-items: center;
+      gap: 16px; padding: 10px 28px;
+      background: #fff; border-bottom: 1px solid #e8e8e8;
     }
+    .soc-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600;
+      letter-spacing: .06em; color: #888; text-decoration: none;
+      transition: color .15s;
+    }
+    .soc-btn:hover { color: #111; }
+    .soc-btn svg { width: 14px; height: 14px; fill: #888; flex-shrink: 0; display: block; }
+    .soc-btn:hover svg { fill: #111; }
 
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 28px; border-bottom: 1px solid #e8e8e8;
+      position: sticky; top: 0; background: #fff; z-index: 100;
+    }
+    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: .1em; color: #111; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-family: 'Bebas Neue', sans-serif; font-size: .9rem; letter-spacing: .13em; color: #aaa; transition: color .15s; }
+    .nav-links a:hover { color: #111; }
+
+    /* HERO */
+    .hero { padding: 6rem 2rem 5rem; text-align: center; border-bottom: 1px solid #e8e8e8; }
+    .eyebrow { font-family: 'Bebas Neue', sans-serif; font-size: .62rem; letter-spacing: .28em; color: #ccc; margin-bottom: 1.4rem; }
     .hero h1 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3rem, 7vw, 5.5rem);
-      line-height: 0.95;
-      letter-spacing: 0.02em;
-      color: var(--text);
-      max-width: 760px;
-      margin-bottom: 1.2rem;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: .93; letter-spacing: .02em; color: #111;
+      max-width: 760px; margin: 0 auto 1.4rem;
     }
-
-    .hero-sub {
-      font-size: 0.9rem;
-      color: var(--muted);
-      max-width: 480px;
-      line-height: 1.7;
-      margin-bottom: 2rem;
+    .hero-sub { font-size: .9rem; color: #999; max-width: 400px; line-height: 1.7; margin: 0 auto 2.5rem; }
+    .hero-btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .btn-p {
+      display: inline-block; background: #111; color: #fff;
+      font-family: 'Bebas Neue', sans-serif; font-size: .9rem; letter-spacing: .16em;
+      padding: 12px 30px; border: 1px solid #111; transition: opacity .15s;
     }
-
-    .hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-
-    .btn-primary {
-      display: inline-block;
-      background: var(--text);
-      color: var(--bg);
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 0.9rem;
-      letter-spacing: 0.14em;
-      padding: 10px 24px;
-      border: 1px solid var(--text);
-      transition: opacity 0.15s;
+    .btn-p:hover { opacity: .8; }
+    .btn-g {
+      display: inline-block; font-family: 'Bebas Neue', sans-serif; font-size: .9rem;
+      letter-spacing: .16em; color: #999; border: 1px solid #ddd; padding: 12px 30px;
+      transition: all .15s;
     }
+    .btn-g:hover { border-color: #111; color: #111; }
 
-    .btn-primary:hover { opacity: 0.8; }
+    /* STATS */
+    .stats { display: flex; justify-content: center; gap: 3.5rem; padding: 1.8rem 2rem; border-bottom: 1px solid #e8e8e8; flex-wrap: wrap; }
+    .stat { text-align: center; }
+    .stat-n { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: .04em; color: #111; }
+    .stat-l { font-size: .6rem; font-weight: 500; letter-spacing: .13em; text-transform: uppercase; color: #bbb; }
 
-    .btn-ghost {
-      display: inline-block;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 0.9rem;
-      letter-spacing: 0.14em;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 10px 24px;
-      transition: border-color 0.15s, color 0.15s;
-    }
+    /* SECTION */
+    .section { max-width: 1060px; margin: 0 auto; padding: 3rem 2rem; border-bottom: 1px solid #e8e8e8; }
+    .sec-hdr { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 1.8rem; }
+    .sec-hdr h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: .08em; color: #111; }
+    .sec-hdr a { font-size: .66rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #bbb; transition: color .15s; }
+    .sec-hdr a:hover { color: #111; }
 
-    .btn-ghost:hover { border-color: var(--text); color: var(--text); }
+    /* VIDEO GRID */
+    .vid-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #e8e8e8; }
+    .vid-card { background: #fff; display: flex; flex-direction: column; }
+    .embed-wrap { position: relative; padding-bottom: 56.25%; background: #111; overflow: hidden; }
+    .embed-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; display: block; }
+    .vid-info { padding: 1rem 1.2rem; }
+    .vid-info h3 { font-family: 'Bebas Neue', sans-serif; font-size: .95rem; letter-spacing: .03em; color: #111; line-height: 1.25; margin-bottom: 4px; }
+    .vid-meta { font-size: .68rem; color: #bbb; }
 
-    /* ── STATS ── */
-    .stats {
-      display: flex;
-      gap: 3rem;
-      padding: 1.6rem 2.5rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      border-bottom: 1px solid var(--border);
-      flex-wrap: wrap;
-    }
-
-    .stat { display: flex; flex-direction: column; gap: 2px; }
-    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.04em; color: var(--text); }
-    .stat-label { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-
-    /* ── HOME SECTION ── */
-    .home-section { max-width: 1100px; margin: 0 auto; padding: 3rem 2.5rem; border-bottom: 1px solid var(--border); }
-
-    .section-hdr { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 1.8rem; }
-    .section-hdr h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.08em; color: var(--text); }
-    .section-hdr a { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); transition: color 0.15s; }
-    .section-hdr a:hover { color: var(--text); }
-
-    /* ── VIDEOS ── */
-    .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
-
-    .vid-card { background: var(--bg); display: flex; flex-direction: column; }
-
-    .vid-card .embed-wrap {
-      position: relative;
-      padding-bottom: 56.25%;
-      background: #f5f5f5;
-    }
-
-    .vid-card .embed-wrap iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .vid-card .vid-info { padding: 1.2rem; }
-
-    .vid-card h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1rem;
-      letter-spacing: 0.03em;
-      color: var(--text);
-      line-height: 1.25;
-      margin-bottom: 6px;
-    }
-
-    .vid-card .card-meta { font-size: 0.7rem; color: var(--muted); }
-
+    /* YOUTUBE CTA */
     .yt-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 1.5rem;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 0.9rem;
-      letter-spacing: 0.14em;
-      background: #ff0000;
-      color: #fff;
-      padding: 10px 22px;
-      transition: opacity 0.15s;
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 1.5rem;
+      font-family: 'Bebas Neue', sans-serif; font-size: .88rem; letter-spacing: .16em;
+      background: #ff0000; color: #fff; padding: 11px 24px; transition: opacity .15s;
     }
+    .yt-cta:hover { opacity: .88; }
+    .yt-cta svg { width: 16px; height: 16px; fill: #fff; flex-shrink: 0; display: block; }
 
-    .yt-cta:hover { opacity: 0.85; }
-    .yt-cta svg { width: 16px; height: 16px; fill: #fff; }
-
-    /* ── BLOG LIST ── */
-    .post-list-rows { display: flex; flex-direction: column; }
-
-    .post-row {
-      display: grid;
-      grid-template-columns: 70px 1fr 56px;
-      gap: 1.2rem;
-      align-items: start;
-      padding: 1.2rem 0;
-      border-bottom: 1px solid var(--border);
-      cursor: pointer;
-      transition: opacity 0.15s;
+    /* LEARN GRID */
+    .learn-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #e8e8e8; }
+    .learn-card {
+      background: #fff; padding: 1.8rem;
+      display: flex; flex-direction: column; gap: .6rem;
+      transition: background .15s;
     }
+    .learn-card:hover { background: #fafafa; }
+    .l-num   { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: #e8e8e8; line-height: 1; }
+    .l-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; letter-spacing: .04em; color: #111; line-height: 1.2; }
+    .learn-card p { font-size: .78rem; color: #aaa; line-height: 1.6; flex: 1; }
+    .l-cta { font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #111; margin-top: .4rem; }
 
-    .post-row:hover { opacity: 0.6; }
-    .post-row:last-child { border-bottom: none; }
-    .post-date { font-size: 0.68rem; color: var(--muted); padding-top: 3px; }
-    .post-row-title { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.03em; color: var(--text); line-height: 1.25; margin-bottom: 3px; }
-    .post-row-excerpt { font-size: 0.76rem; color: var(--muted); line-height: 1.5; }
-    .post-time { font-size: 0.65rem; color: #ccc; text-align: right; padding-top: 3px; }
+    /* FOOTER */
+    footer { padding: 1.8rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .f-logo { font-family: 'Bebas Neue', sans-serif; font-size: .95rem; letter-spacing: .1em; color: #ccc; }
+    .f-note { font-size: .66rem; color: #ccc; }
 
-    /* ── COGNITIVE CARDS ── */
-    .cog-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
-
-    .cog-card {
-      background: var(--bg);
-      padding: 1.6rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      transition: background 0.15s;
-    }
-
-    .cog-card:hover { background: var(--bg2); }
-    .cog-card .c-type { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-    .cog-card .c-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.04em; color: var(--text); }
-    .cog-card p { font-size: 0.78rem; color: var(--muted); line-height: 1.55; }
-
-    @media (max-width: 760px) {
-      .video-grid { grid-template-columns: 1fr; }
-      .cog-cards { grid-template-columns: 1fr; }
-      .hero { padding: 3rem 1.2rem 2.5rem; }
-      .stats, .home-section { padding-left: 1.2rem; padding-right: 1.2rem; }
-      .post-row { grid-template-columns: 56px 1fr; }
-      .post-time { display: none; }
+    @media (max-width: 720px) {
+      .vid-grid  { grid-template-columns: 1fr; }
+      .learn-grid{ grid-template-columns: 1fr; }
+      .stats     { gap: 1.5rem; }
+      .nav-links { gap: 14px; }
+      .social-strip { padding: 10px 16px; }
+      .hero { padding: 4rem 1.5rem 3.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ── AGE GATE ── -->
-  <div id="age-gate">
-    <div class="gate-logo">100XYANNI</div>
-    <div class="gate-tagline">Research · Content · Performance</div>
+<!-- ── AGE GATE ── -->
+<div id="age-gate">
+  <div class="gate-logo">100XYANNI</div>
+  <div class="gate-tag">Research · Content · Performance</div>
+  <div class="disc-box">
+    <span class="disc-lbl">Medical Disclaimer</span>
+    <p>This website contains information about research compounds, pharmacology, and cognitive science intended strictly for <strong>educational and informational purposes only</strong>. Nothing on this site constitutes medical advice, a diagnosis, or a treatment recommendation. Always consult a licensed healthcare professional before making any decisions related to your health.</p>
+  </div>
+  <label class="age-chk">
+    <input type="checkbox" id="age-confirm" onchange="document.getElementById('enter-btn').classList.toggle('ready',this.checked)" />
+    I confirm I am 18 years of age or older and understand this content is for educational purposes only.
+  </label>
+  <button class="enter-btn" id="enter-btn" onclick="if(document.getElementById('age-confirm').checked){document.getElementById('age-gate').style.display='none';document.getElementById('site').style.display='block'}">Enter Portal</button>
+</div>
 
-    <div class="disclaimer-box">
-      <span class="d-label">Medical Disclaimer</span>
-      <p>This website contains information about research compounds, pharmacology, and cognitive science intended strictly for <strong>educational and informational purposes only</strong>. Nothing on this site constitutes medical advice, a diagnosis, or a treatment recommendation. Always consult a licensed healthcare professional before making any decisions related to your health. The content here discusses research-use compounds not approved for human therapeutic use.</p>
-    </div>
+<!-- ── SITE ── -->
+<div id="site">
 
-    <label class="age-check">
-      <input type="checkbox" id="age-confirm" onchange="checkGate()" />
-      I confirm I am 18 years of age or older and understand this content is for educational purposes only.
-    </label>
-
-    <button class="enter-btn" id="enter-btn" onclick="enterSite()">Enter Portal</button>
+  <!-- SOCIAL STRIP -->
+  <div class="social-strip">
+    <a href="https://www.tiktok.com/@yannijereissati" target="_blank" rel="noopener" class="soc-btn">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.75a8.16 8.16 0 0 0 4.77 1.52V6.82a4.85 4.85 0 0 1-1-.13z"/>
+      </svg>
+      TikTok
+    </a>
+    <a href="https://www.instagram.com/100xyanni" target="_blank" rel="noopener" class="soc-btn">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+      </svg>
+      Instagram
+    </a>
+    <a href="https://www.twitter.com/100xyanni" target="_blank" rel="noopener" class="soc-btn">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/>
+      </svg>
+      X
+    </a>
   </div>
 
-  <!-- ── MAIN SITE ── -->
-  <div id="site">
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">100XYANNI</a>
+    <ul class="nav-links">
+      <li><a href="blog/index.html">Blog</a></li>
+      <li><a href="videos.html">Videos</a></li>
+      <li><a href="cognitive/index.html">Cognitive</a></li>
+      <li><a href="sources.html">Sources</a></li>
+    </ul>
+  </nav>
 
-    <!-- SOCIAL STRIP -->
-    <div class="social-strip">
-      <a href="https://www.tiktok.com/@yannijereissati" target="_blank" rel="noopener" class="s-btn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.75a8.16 8.16 0 004.77 1.52V6.82a4.85 4.85 0 01-1-.13z"/></svg>
-        TikTok
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow">Research · Content · Performance</div>
+    <h1>The Research Broken Down For You</h1>
+    <p class="hero-sub">Deep dives into compounds, protocols, and the science behind performance — written to accompany the videos.</p>
+    <div class="hero-btns">
+      <a href="cognitive/index.html" class="btn-p">Start Learning</a>
+      <a href="videos.html" class="btn-g">Watch the Videos</a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat"><div class="stat-n">40+</div><div class="stat-l">Research Posts</div></div>
+    <div class="stat"><div class="stat-n">20+</div><div class="stat-l">Topics Covered</div></div>
+    <div class="stat"><div class="stat-n">200+</div><div class="stat-l">Sources Cited</div></div>
+    <div class="stat"><div class="stat-n">100X</div><div class="stat-l">The Standard</div></div>
+  </div>
+
+  <!-- VIDEOS -->
+  <section class="section">
+    <div class="sec-hdr">
+      <h2>Latest Videos</h2>
+      <a href="https://www.youtube.com/@yannislongevity" target="_blank" rel="noopener">View Channel →</a>
+    </div>
+    <div class="vid-grid">
+      <div class="vid-card">
+        <div class="embed-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/g7FVEpNlcwI?rel=0&modestbranding=1&color=white"
+            title="The Most Important Molecule For Cognition"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="vid-info">
+          <h3>The Most Important Molecule For Cognition</h3>
+          <div class="vid-meta">@yannislongevity · 11:12</div>
+        </div>
+      </div>
+      <div class="vid-card">
+        <div class="embed-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/OhibuKfQvb4?rel=0&modestbranding=1&color=white"
+            title="What Is Cognition"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="vid-info">
+          <h3>What Is Cognition</h3>
+          <div class="vid-meta">@yannislongevity · 13:05</div>
+        </div>
+      </div>
+    </div>
+    <a href="https://www.youtube.com/@yannislongevity" target="_blank" rel="noopener" class="yt-cta">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+      </svg>
+      Watch on YouTube
+    </a>
+  </section>
+
+  <!-- START LEARNING -->
+  <section class="section">
+    <div class="sec-hdr"><h2>Start Learning Today</h2></div>
+    <div class="learn-grid">
+      <a href="cognitive/bdnf.html" class="learn-card">
+        <div class="l-num">01</div>
+        <div class="l-title">BDNF & Neuroplasticity</div>
+        <p>The most important molecule for cognitive performance. What it is, what raises it, and how to apply it.</p>
+        <span class="l-cta">Read Lesson →</span>
       </a>
-      <a href="https://www.instagram.com/100xyanni" target="_blank" rel="noopener" class="s-btn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        Instagram
+      <a href="cognitive/ssri.html" class="learn-card">
+        <div class="l-num">02</div>
+        <div class="l-title">SSRIs & Serotonin</div>
+        <p>How SSRIs actually work, the chemical imbalance myth, and what they do to cognition over time.</p>
+        <span class="l-cta">Read Lesson →</span>
       </a>
-      <a href="https://www.twitter.com/100xyanni" target="_blank" rel="noopener" class="s-btn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
-        X
+      <a href="cognitive/amphetamines.html" class="learn-card">
+        <div class="l-num">03</div>
+        <div class="l-title">Amphetamines & Dopamine</div>
+        <p>Reverse transport, VMAT2 disruption, tolerance mechanics, and the inverted-U dopamine curve.</p>
+        <span class="l-cta">Read Lesson →</span>
+      </a>
+      <a href="cognitive/wakefulness.html" class="learn-card">
+        <div class="l-num">04</div>
+        <div class="l-title">Modafinil & Wakefulness</div>
+        <p>The orexin system, how caffeine actually works, and why modafinil is mechanistically different from stimulants.</p>
+        <span class="l-cta">Read Lesson →</span>
+      </a>
+      <a href="blog/index.html" class="learn-card">
+        <div class="l-num">05</div>
+        <div class="l-title">Research Blog</div>
+        <p>Compound breakdowns and protocol research written to go further than what fits in a video.</p>
+        <span class="l-cta">Read Posts →</span>
+      </a>
+      <a href="sources.html" class="learn-card">
+        <div class="l-num">06</div>
+        <div class="l-title">Sources Library</div>
+        <p>Every study and paper cited across the content. Primary literature, organised by topic.</p>
+        <span class="l-cta">View Sources →</span>
       </a>
     </div>
+  </section>
 
-    <!-- NAV -->
-    <nav>
-      <a href="index.html" class="nav-logo">100XYANNI</a>
-      <ul class="nav-links">
-        <li><a href="blog/index.html">Blog</a></li>
-        <li><a href="videos.html">Videos</a></li>
-        <li><a href="cognitive/index.html">Cognitive</a></li>
-        <li><a href="sources.html">Sources</a></li>
-      </ul>
-    </nav>
+  <footer>
+    <span class="f-logo">100XYANNI</span>
+    <span class="f-note">All content is for educational and informational purposes only.</span>
+  </footer>
 
-    <!-- HERO -->
-    <section class="hero">
-      <p class="section-label">Research · Content · Performance</p>
-      <h1>The Research Broken Down For You</h1>
-      <p class="hero-sub">Deep dives into compounds, protocols, and the science behind performance — written to accompany the videos and go further than what fits on screen.</p>
-      <div class="hero-actions">
-        <a href="blog/index.html" class="btn-primary">Read the Blog</a>
-        <a href="videos.html" class="btn-ghost">Watch the Videos</a>
-      </div>
-    </section>
+</div>
 
-    <!-- STATS -->
-    <div class="stats">
-      <div class="stat"><span class="stat-num">40+</span><span class="stat-label">Research Posts</span></div>
-      <div class="stat"><span class="stat-num">20+</span><span class="stat-label">Topics Covered</span></div>
-      <div class="stat"><span class="stat-num">200+</span><span class="stat-label">Sources Cited</span></div>
-      <div class="stat"><span class="stat-num">100X</span><span class="stat-label">The Standard</span></div>
-    </div>
-
-    <!-- VIDEOS -->
-    <section class="home-section">
-      <div class="section-hdr">
-        <h2>Latest Videos</h2>
-        <a href="https://www.youtube.com/@yannislongevity" target="_blank" rel="noopener">View Channel →</a>
-      </div>
-
-      <div class="video-grid">
-
-        <div class="vid-card">
-          <div class="embed-wrap">
-            <!-- VIDEO 1: "The Most Important Molecule For Cognition" -->
-            <!-- Replace g7FVEpNlcwI with the ID from your YouTube URL e.g. youtube.com/watch?v=XXXXX -->
-            <iframe
-              src="https://www.youtube.com/embed/g7FVEpNlcwI"
-              title="The Most Important Molecule For Cognition"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-            </iframe>
-          </div>
-          <div class="vid-info">
-            <h3>The Most Important Molecule For Cognition</h3>
-            <div class="card-meta">@yannislongevity · 11:12</div>
-          </div>
-        </div>
-
-        <div class="vid-card">
-          <div class="embed-wrap">
-            <!-- VIDEO 2: "What Is Cognition" -->
-            <!-- Replace OhibuKfQvb4 with the ID from your YouTube URL -->
-            <iframe
-              src="https://www.youtube.com/embed/OhibuKfQvb4"
-              title="What Is Cognition"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-            </iframe>
-          </div>
-          <div class="vid-info">
-            <h3>What Is Cognition</h3>
-            <div class="card-meta">@yannislongevity · 13:05</div>
-          </div>
-        </div>
-
-      </div>
-
-      <div style="margin-top:1.5rem">
-        <a href="https://www.youtube.com/@yannislongevity" target="_blank" rel="noopener" class="yt-cta">
-          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          Watch on YouTube
-        </a>
-      </div>
-    </section>
-
-    <!-- LATEST POSTS -->
-    <section class="home-section">
-      <div class="section-hdr">
-        <h2>Latest Posts</h2>
-        <a href="blog/index.html">All Posts →</a>
-      </div>
-      <div class="post-list-rows">
-        <a href="blog/post-template.html" class="post-row">
-          <span class="post-date">Jun 20</span>
-          <div>
-            <div class="post-row-title">BPC-157: The Repair Peptide They Don't Talk About</div>
-            <div class="post-row-excerpt">Gut-derived peptide, tendon repair, dopamine modulation, and what the research actually shows.</div>
-          </div>
-          <span class="post-time">12 min</span>
-        </a>
-        <a href="blog/post-template.html" class="post-row">
-          <span class="post-date">Jun 14</span>
-          <div>
-            <div class="post-row-title">Retatrutide: What the GLP-1 Conversation Is Missing</div>
-            <div class="post-row-excerpt">Triple agonist mechanism and body composition data in research context.</div>
-          </div>
-          <span class="post-time">10 min</span>
-        </a>
-        <a href="blog/post-template.html" class="post-row">
-          <span class="post-date">Jun 8</span>
-          <div>
-            <div class="post-row-title">The Recomp Stack: How These Compounds Work Together</div>
-            <div class="post-row-excerpt">Mechanistic breakdown of fat loss and muscle retention in a research context.</div>
-          </div>
-          <span class="post-time">14 min</span>
-        </a>
-        <a href="blog/post-template.html" class="post-row">
-          <span class="post-date">May 22</span>
-          <div>
-            <div class="post-row-title">Semax and Selank: The Cognitive Stack</div>
-            <div class="post-row-excerpt">BDNF upregulation, anxiolysis, and nootropic properties that hold up in the literature.</div>
-          </div>
-          <span class="post-time">11 min</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- COGNITIVE -->
-    <section class="home-section">
-      <div class="section-hdr">
-        <h2>Cognitive</h2>
-        <a href="cognitive/index.html">All Lessons →</a>
-      </div>
-      <div class="cog-cards">
-        <a href="cognitive/bdnf.html" class="cog-card">
-          <div class="c-type">Growth Factor</div>
-          <div class="c-name">BDNF</div>
-          <p>What upregulates it, lifestyle inputs, peptides, and pharmacological connections.</p>
-        </a>
-        <a href="cognitive/ssri.html" class="cog-card">
-          <div class="c-type">Pharmacology</div>
-          <div class="c-name">SSRIs & SNRIs</div>
-          <p>Mechanism, the chemical imbalance myth, cognitive effects, BDNF link.</p>
-        </a>
-        <a href="cognitive/amphetamines.html" class="cog-card">
-          <div class="c-type">Stimulant</div>
-          <div class="c-name">Amphetamines</div>
-          <p>Reverse transport, VMAT2 disruption, tolerance, dopamine downregulation.</p>
-        </a>
-        <a href="cognitive/wakefulness.html" class="cog-card">
-          <div class="c-type">Wakefulness</div>
-          <div class="c-name">Modafinil & Caffeine</div>
-          <p>Orexin system, adenosine antagonism, strategic use.</p>
-        </a>
-        <a href="cognitive/index.html" class="cog-card">
-          <div class="c-type">Neurotransmitter</div>
-          <div class="c-name">Dopamine</div>
-          <p>Executive function, working memory, reward pathways, PFC signaling.</p>
-        </a>
-        <a href="cognitive/index.html" class="cog-card">
-          <div class="c-type">Neurotransmitter</div>
-          <div class="c-name">Serotonin</div>
-          <p>5-HT receptor subtypes, mood, memory consolidation, appetite.</p>
-        </a>
-      </div>
-    </section>
-
-    <footer>
-      <span class="footer-logo">100XYANNI</span>
-      <span class="footer-note">All content is for educational and informational purposes only.</span>
-    </footer>
-
-  </div><!-- end #site -->
-
-  <script>
-    function checkGate() {
-      const checked = document.getElementById('age-confirm').checked;
-      const btn = document.getElementById('enter-btn');
-      btn.classList.toggle('ready', checked);
-    }
-
-    function enterSite() {
-      if (!document.getElementById('age-confirm').checked) return;
-      document.getElementById('age-gate').style.display = 'none';
-      document.getElementById('site').style.display = 'block';
-    }
-  </script>
-
-
-  <script>
-    // Secret admin access — type yannilogin anywhere on the page
-    let _buf = '';
-    document.addEventListener('keydown', function(e) {
-      _buf += e.key.toLowerCase();
-      if (_buf.length > 12) _buf = _buf.slice(-12);
-      if (_buf.includes('yannilogin')) {
-        window.location.href = 'admin.html';
-      }
-    });
-  </script>
+<script>
+  let _buf = '';
+  document.addEventListener('keydown', function(e) {
+    _buf += e.key.toLowerCase();
+    if (_buf.length > 12) _buf = _buf.slice(-12);
+    if (_buf.includes('yannilogin')) window.location.href = 'admin.html';
+  });
+</script>
 
 </body>
 </html>

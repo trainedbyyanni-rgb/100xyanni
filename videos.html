@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Videos — 100X Yanni</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    .page-hero {
+      padding: 4rem 2.5rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+    }
+
+    .page-hero p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 480px;
+    }
+
+    .videos-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3.5rem 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem 2rem;
+    }
+
+    @media (max-width: 760px) {
+      .videos-grid { grid-template-columns: 1fr; padding: 2rem 1.2rem; }
+      .page-hero { padding-left: 1.2rem; padding-right: 1.2rem; }
+    }
+  </style>
+  
+  
+  <style>
+    a,a:link,a:visited{color:inherit;text-decoration:none}
+    .social-strip{display:flex;justify-content:flex-end;gap:12px;padding:10px 2.5rem;border-bottom:1px solid #e8e8e8;background:#fff}
+    .s-btn{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:.06em;color:#999;cursor:pointer;background:none;border:none;transition:color .15s;font-family:"DM Sans",sans-serif;text-decoration:none}
+    .s-btn:hover{color:#111}
+    .s-btn svg{width:13px;height:13px;flex-shrink:0}
+    .nav-logo{font-family:"Bebas Neue",sans-serif!important;font-size:1.5rem;letter-spacing:.1em;color:#111!important;text-decoration:none!important}
+    .nav-links a,.nav-links a:link,.nav-links a:visited{font-family:"Bebas Neue",sans-serif!important;font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;color:#999!important;text-decoration:none!important;transition:color .15s}
+    .nav-links a:hover,.nav-links a.active{color:#111!important}
+    body{background:#fff;color:#111}
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">100XYANNI</a>
+    <ul class="nav-links">
+      <li><a href="blog/index.html">Blog</a></li>
+      <li><a href="videos.html" class="active">Videos</a></li>
+      <li><a href="cognitive/index.html">Cognitive</a></li>
+      <li><a href="sources.html">Sources</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <p class="section-label">All Videos</p>
+    <h1>Watch the Content</h1>
+    <p>Short-form and long-form breakdowns embedded from YouTube. Each video has an accompanying blog post that goes deeper.</p>
+  </div>
+
+  <div class="videos-grid">
+
+    <!-- Paste your YouTube video IDs in the src URLs below -->
+    <!-- Format: https://www.youtube.com/embed/YOUR_VIDEO_ID -->
+
+    <div class="video-card">
+      <div class="embed-wrap">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1"
+          title="Video 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <h3>BPC-157 Full Breakdown — Everything You Need to Know</h3>
+      <div class="card-meta">Jun 22, 2026 &nbsp;·&nbsp; <a href="blog/post-template.html" style="color:var(--text);font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;">Read Post →</a></div>
+    </div>
+
+    <div class="video-card">
+      <div class="embed-wrap">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2"
+          title="Video 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <h3>Retatrutide: Triple Agonist, Triple Results</h3>
+      <div class="card-meta">Jun 15, 2026 &nbsp;·&nbsp; <a href="blog/post-template.html" style="color:var(--text);font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;">Read Post →</a></div>
+    </div>
+
+    <div class="video-card">
+      <div class="embed-wrap">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_3"
+          title="Video 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <h3>Melanotan II: The MSH Pathway Explained</h3>
+      <div class="card-meta">Jun 8, 2026 &nbsp;·&nbsp; <a href="blog/post-template.html" style="color:var(--text);font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;">Read Post →</a></div>
+    </div>
+
+    <div class="video-card">
+      <div class="embed-wrap">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_4"
+          title="Video 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <h3>The Recomp Stack — How These Compounds Work Together</h3>
+      <div class="card-meta">May 30, 2026 &nbsp;·&nbsp; <a href="blog/post-template.html" style="color:var(--text);font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;">Read Post →</a></div>
+    </div>
+
+    <div class="video-card">
+      <div class="embed-wrap">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_5"
+          title="Video 5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <h3>Semax and Selank: The Cognitive Stack</h3>
+      <div class="card-meta">May 22, 2026 &nbsp;·&nbsp; <a href="blog/post-template.html" style="color:var(--text);font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;">Read Post →</a></div>
+    </div>
+
+    <div class="video-card">
+      <div class="embed-wrap">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_6"
+          title="Video 6" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <h3>Epithalon: What the Telomere Research Actually Shows</h3>
+      <div class="card-meta">May 15, 2026 &nbsp;·&nbsp; <a href="blog/post-template.html" style="color:var(--text);font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;">Read Post →</a></div>
+    </div>
+
+  </div>
+
+  <footer>
+    <span class="footer-logo">100XYANNI</span>
+    <span class="footer-note">All content is for educational and informational purposes only.</span>
+  </footer>
+
+  <div class="corner-tag">@100xyanni</div>
+
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compounds — 100X Yanni</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+  <style>
+    .page-hero {
+      padding: 4rem 2.5rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+    }
+
+    .page-hero p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    .compounds-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3.5rem 2.5rem;
+    }
+
+    .category-header {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.6rem;
+      margin-bottom: 1.4rem;
+      margin-top: 3rem;
+    }
+
+    .category-header:first-child { margin-top: 0; }
+
+    .compounds-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .compound-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: border-color 0.18s;
+      cursor: pointer;
+    }
+
+    .compound-card:hover { border-color: var(--text); }
+
+    .compound-card .c-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .compound-card .c-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+
+    .compound-card .c-aka {
+      font-size: 0.72rem;
+      color: #444;
+      letter-spacing: 0.04em;
+    }
+
+    .compound-card p {
+      font-size: 0.82rem;
+      color: #777;
+      line-height: 1.6;
+      margin-top: 0.3rem;
+    }
+
+    .compound-card .c-links {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: auto;
+      padding-top: 0.8rem;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    .compound-card .c-links a {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .compound-card .c-links a.post-link { color: var(--text); }
+    .compound-card .c-links a.video-link { color: var(--blue); }
+    .compound-card .c-links a:hover { text-decoration: underline; }
+
+    @media (max-width: 900px) { .compounds-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 580px) {
+      .compounds-grid { grid-template-columns: 1fr; }
+      .page-hero, .compounds-section { padding-left: 1.2rem; padding-right: 1.2rem; }
+    }
+  </style>
+  
+  
+  <style>
+    a,a:link,a:visited{color:inherit;text-decoration:none}
+    .social-strip{display:flex;justify-content:flex-end;gap:12px;padding:10px 2.5rem;border-bottom:1px solid #e8e8e8;background:#fff}
+    .s-btn{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:.06em;color:#999;cursor:pointer;background:none;border:none;transition:color .15s;font-family:"DM Sans",sans-serif;text-decoration:none}
+    .s-btn:hover{color:#111}
+    .s-btn svg{width:13px;height:13px;flex-shrink:0}
+    .nav-logo{font-family:"Bebas Neue",sans-serif!important;font-size:1.5rem;letter-spacing:.1em;color:#111!important;text-decoration:none!important}
+    .nav-links a,.nav-links a:link,.nav-links a:visited{font-family:"Bebas Neue",sans-serif!important;font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;color:#999!important;text-decoration:none!important;transition:color .15s}
+    .nav-links a:hover,.nav-links a.active{color:#111!important}
+    body{background:#fff;color:#111}
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">100XYANNI</a>
+    <ul class="nav-links">
+      <li><a href="../blog/index.html">Blog</a></li>
+      <li><a href="../videos.html">Videos</a></li>
+      <li><a href="index.html" class="active">Compounds</a></li>
+      <li><a href="../sources.html">Sources</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <p class="section-label">Compound Index</p>
+    <h1>What's Being<br>Researched</h1>
+    <p>Every compound covered on the channel, organized by category. Each card links to the full post and video where available.</p>
+  </div>
+
+  <div class="compounds-section">
+
+    <!-- PEPTIDES -->
+    <div class="category-header">Peptides</div>
+    <div class="compounds-grid">
+
+      <div class="compound-card">
+        <span class="c-label">Peptide · Recovery</span>
+        <span class="c-name">BPC-157</span>
+        <span class="c-aka">Body-Protective Compound 157</span>
+        <p>Gut-derived 15-amino-acid peptide. Systemic healing, angiogenesis, dopaminergic modulation.</p>
+        <div class="c-links">
+          <a href="../blog/post-template.html" class="post-link">Read Post →</a>
+          <a href="../videos.html" class="video-link">Watch →</a>
+        </div>
+      </div>
+
+      <div class="compound-card">
+        <span class="c-label">Peptide · Cognitive</span>
+        <span class="c-name">Semax</span>
+        <span class="c-aka">ACTH(4-7)PGP</span>
+        <p>ACTH-derived nootropic peptide. BDNF upregulation, neuroprotection, attention and memory in rodent models.</p>
+        <div class="c-links">
+          <a href="../blog/post-template.html" class="post-link">Read Post →</a>
+          <a href="../videos.html" class="video-link">Watch →</a>
+        </div>
+      </div>
+
+      <div class="compound-card">
+        <span class="c-label">Peptide · Anxiolytic</span>
+        <span class="c-name">Selank</span>
+        <span class="c-aka">Tuftsin analog</span>
+        <p>Anxiolytic peptide with immunomodulatory and nootropic properties. Serotonin and GABA interaction.</p>
+        <div class="c-links">
+          <a href="../blog/post-template.html" class="post-link">Read Post →</a>
+          <a href="../videos.html" class="video-link">Watch →</a>
+        </div>
+      </div>
+
+      <div class="compound-card">
+        <span class="c-label">Peptide · Longevity</span>
+        <span class="c-name">Epithalon</span>
+        <span class="c-aka">Epitalon / Epithalamin</span>
+        <p>Tetrapeptide derived from the pineal gland. Telomerase activation, circadian rhythm modulation, anti-aging research.</p>
+        <div class="c-links">
+          <a href="../blog/post-template.html" class="post-link">Read Post →</a>
+          <a href="../videos.html" class="video-link">Watch →</a>
+        </div>
+      </div>
+
+      <div class="compound-card">
+        <span class="c-label">Peptide · GH Secretagogue</span>
+        <span class="c-name">Ipamorelin</span>
+        <span class="c-aka">NNC 26-0161</span>
+        <p>Selective ghrelin mimetic. Growth hormone release without significant cortisol or prolactin elevation in research models.</p>
+        <div class="c-links">
+          <a href="../blog/post-template.html" class="post-link">Read Post →</a>
+          <a href="../videos.html" class="video-link">Watch →</a>
+        </div>
+      </div>
+
+      <div class="compound-card">
+        <span class="c-label">Peptide · GH / IGF</span>
+        <span class="c-name">CJC-1295</span>
+        <span class="c-aka">Modified GRF 1-29</span>
+        <p>GHRH analog with extended half-life via DAC modification. Often studied in combination with Ipamorelin.</p>
+        <div class="c-links">
+          <a href="../blog/post-template.html" class="post-link">Read Post →</a>
+          <a href="../videos.html" class="video-link">Watch →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- WEIGHT / RECOMP -->
+    <div class="category-header">Weight &amp; Recomp</div>
+    <div class="compounds-grid">
+
+      <div class="compound-card">
+        <span class="c-label">GLP-1 / GIP / Glucagon Agonist</span>
+        <span class="c-name">Retatrutide</span>
+        <span class="c-aka">LY3437943</span>
+        <p>Triple receptor agonist. Most aggressive fat loss data in current peptide research trials. Body composition research.</p>
+        <div class="c-links">
+          <a href="../blog/post-template.html" class="post-link">Read Post →</a>
+          <a href="../videos.html" class="video-link">Watch →</a>
+        </div>
+      </div>
+
+      <div class="compound-card">
+        <span class="c-label">GLP-1 / GIP Agonist</span>
+        <span class="c-name">Tirzepatide</span>
+        <span class="c-aka">Mounjaro / Zepbound</span>
+        <p>Dual agonist predecessor to Retatrutide. Strong fat loss and insulin sensitization data across multiple trials.</p>
+        <div class="c-links">
+          <a href="../blog/post-template.html" class="post-link">Read Post →</a>
+          <a href="../videos.html" class="video-link">Watch →</a>
+        </div>
+      </div>
+
+      <div class="compound-card">
+        <span class="c-label">PPAR-δ Agonist</span>
+        <span class="c-name">Cardarine</span>
+        <span class="c-aka">GW501516</span>
+        <p>Fatty acid oxidation, endurance, and metabolic research. Oncological concerns noted in long-term animal studies.</p>
+        <div class="c-links">
+          <a href="../blog/post-template.html" class="post-link">Read Post →</a>
+          <a href="../videos.html" class="video-link">Watch →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MELANOCORTIN -->
+    <div class="category-header">Melanocortin</div>
+    <div class="compounds-grid">
+
+      <div class="compound-card">
+        <span class="c-label">MC1R / MC4R Agonist</span>
+        <span class="c-name">Melanotan II</span>
+        <span class="c-aka">MT-II</span>
+        <p>Non-selective melanocortin agonist. Pigmentation, appetite suppression, libido research via MC4R pathway.</p>
+        <div class="c-links">
+          <a href="../blog/post-template.html" class="post-link">Read Post →</a>
+          <a href="../videos.html" class="video-link">Watch →</a>
+        </div>
+      </div>
+
+      <div class="compound-card">
+        <span class="c-label">MC1R Selective Agonist</span>
+        <span class="c-name">afamelanotide</span>
+        <span class="c-aka">Scenesse / NDP-MSH</span>
+        <p>Selective MC1R agonist used in photodermatology research. More targeted pigmentation profile than MT-II.</p>
+        <div class="c-links">
+          <a href="../blog/post-template.html" class="post-link">Read Post →</a>
+          <a href="../videos.html" class="video-link">Watch →</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer>
+    <span class="footer-logo">100XYANNI</span>
+    <span class="footer-note">All content is for educational and informational purposes only.</span>
+  </footer>
+
+  <div class="corner-tag">@100xyanni</div>
+
+</body>
+</html>

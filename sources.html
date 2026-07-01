@@ -4,123 +4,82 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sources — 100X Yanni</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    .page-hero {
-      padding: 4rem 2.5rem 3rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      border-bottom: 1px solid var(--border);
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #fff; color: #111; font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    a, a:link, a:visited { color: inherit; text-decoration: none; }
+
+    .social-strip { display:flex; justify-content:flex-end; align-items:center; gap:20px; padding:10px 36px; background:#fff; border-bottom:1px solid #ececec; }
+    .soc-btn { display:inline-flex; align-items:center; gap:7px; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:.06em; color:#777; text-decoration:none; transition:color .15s; }
+    .soc-btn:hover { color:#111; }
+    .soc-btn svg { width:20px; height:20px; fill:#777; flex-shrink:0; display:block; transition:fill .15s; }
+    .soc-btn:hover svg { fill:#111; }
+
+    nav { display:flex; align-items:center; padding:0 36px; border-bottom:1px solid #ececec; position:sticky; top:0; background:#fff; z-index:100; height:62px; }
+    .nav-logo { font-family:'Bebas Neue',sans-serif; font-size:1.55rem; letter-spacing:.1em; color:#111; white-space:nowrap; margin-right:3rem; }
+    .nav-links { display:flex; flex:1; justify-content:space-around; list-style:none; align-items:center; }
+    .nav-links a { font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:.15em; color:#aaa; transition:color .15s; }
+    .nav-links a:hover, .nav-links a.active { color:#111; }
+
+    .hero { max-width:860px; margin:0 auto; padding:4.5rem 2.5rem 3rem; border-bottom:1px solid #ececec; }
+    .eyebrow { font-family:'Bebas Neue',sans-serif; font-size:.65rem; letter-spacing:.26em; color:#bbb; margin-bottom:1.2rem; }
+    .hero h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(3rem,7vw,5rem); letter-spacing:.03em; line-height:.95; color:#111; margin-bottom:1rem; }
+    .hero p { font-size:1rem; color:#888; line-height:1.75; max-width:520px; }
+
+    .sources-wrap { max-width:860px; margin:0 auto; padding:2.5rem 2.5rem 5rem; }
+
+    .src-group { margin-bottom:3rem; }
+
+    .src-group-hdr {
+      display:flex; align-items:center; gap:1rem;
+      padding-bottom:.8rem; margin-bottom:0;
+      border-bottom:2px solid #111;
     }
+    .src-group-hdr h3 { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:.08em; color:#111; }
+    .src-count { font-size:.62rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#bbb; }
 
-    .page-hero h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      letter-spacing: 0.04em;
-      line-height: 1;
-      color: var(--text);
-      margin-bottom: 0.8rem;
+    .src-item {
+      display:grid; grid-template-columns:1fr auto;
+      gap:1.5rem; align-items:start;
+      padding:1rem 0; border-bottom:1px solid #f0f0f0;
     }
-
-    .page-hero p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      max-width: 520px;
+    .src-item:last-child { border-bottom:none; }
+    .src-title { font-size:.9rem; color:#111; line-height:1.55; margin-bottom:.25rem; }
+    .src-journal { font-size:.74rem; color:#999; }
+    .src-link {
+      font-size:.68rem; font-weight:700; letter-spacing:.1em;
+      text-transform:uppercase; color:#0066cc; white-space:nowrap;
+      flex-shrink:0; padding-top:3px; transition:opacity .15s;
     }
+    .src-link:hover { opacity:.7; text-decoration:underline; }
 
-    .sources-wrap {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 3.5rem 2.5rem;
+    footer { padding:2rem 36px; display:flex; align-items:center; justify-content:space-between; border-top:1px solid #ececec; }
+    .f-logo { font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:.1em; color:#ccc; }
+    .f-note { font-size:.68rem; color:#ccc; }
+
+    @media (max-width:640px) {
+      .src-item { grid-template-columns:1fr; gap:.4rem; }
+      .hero, .sources-wrap { padding-left:1.2rem; padding-right:1.2rem; }
+      nav { padding:0 16px; } .nav-logo { margin-right:1rem; }
     }
-
-    .source-group {
-      margin-bottom: 3.5rem;
-    }
-
-    .source-group-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.2rem;
-      padding-bottom: 0.7rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .source-group-header h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1rem;
-      letter-spacing: 0.14em;
-      color: var(--text);
-    }
-
-    .source-count {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      padding: 0.2rem 0.55rem;
-    }
-
-    .source-item {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 1.5rem;
-      align-items: start;
-      padding: 0.9rem 0;
-      border-bottom: 1px solid #0f0f10;
-    }
-
-    .source-item:last-child { border-bottom: none; }
-
-    .source-title {
-      font-size: 0.875rem;
-      color: var(--text);
-      line-height: 1.55;
-      margin-bottom: 0.2rem;
-    }
-
-    .source-journal {
-      font-size: 0.72rem;
-      color: #555;
-      letter-spacing: 0.02em;
-    }
-
-    .source-item a {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--blue);
-      white-space: nowrap;
-      flex-shrink: 0;
-      padding-top: 0.3rem;
-    }
-
-    .source-item a:hover { text-decoration: underline; }
-
-    @media (max-width: 640px) {
-      .source-item { grid-template-columns: 1fr; gap: 0.5rem; }
-      .page-hero, .sources-wrap { padding-left: 1.2rem; padding-right: 1.2rem; }
-    }
-  </style>
-  
-  
-  <style>
-    a,a:link,a:visited{color:inherit;text-decoration:none}
-    .social-strip{display:flex;justify-content:flex-end;gap:12px;padding:10px 2.5rem;border-bottom:1px solid #e8e8e8;background:#fff}
-    .s-btn{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:.06em;color:#999;cursor:pointer;background:none;border:none;transition:color .15s;font-family:"DM Sans",sans-serif;text-decoration:none}
-    .s-btn:hover{color:#111}
-    .s-btn svg{width:13px;height:13px;flex-shrink:0}
-    .nav-logo{font-family:"Bebas Neue",sans-serif!important;font-size:1.5rem;letter-spacing:.1em;color:#111!important;text-decoration:none!important}
-    .nav-links a,.nav-links a:link,.nav-links a:visited{font-family:"Bebas Neue",sans-serif!important;font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;color:#999!important;text-decoration:none!important;transition:color .15s}
-    .nav-links a:hover,.nav-links a.active{color:#111!important}
-    body{background:#fff;color:#111}
   </style>
 </head>
 <body>
+
+  <div class="social-strip">
+    <a href="https://www.tiktok.com/@yannijereissati" target="_blank" rel="noopener" class="soc-btn">
+      <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.75a8.16 8.16 0 0 0 4.77 1.52V6.82a4.85 4.85 0 0 1-1-.13z"/></svg>TikTok
+    </a>
+    <a href="https://www.instagram.com/100xyanni" target="_blank" rel="noopener" class="soc-btn">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>Instagram
+    </a>
+    <a href="https://www.twitter.com/100xyanni" target="_blank" rel="noopener" class="soc-btn">
+      <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>X
+    </a>
+  </div>
 
   <nav>
     <a href="index.html" class="nav-logo">100XYANNI</a>
@@ -132,163 +91,200 @@
     </ul>
   </nav>
 
-  <div class="page-hero">
-    <p class="section-label">Research Library</p>
+  <div class="hero">
+    <div class="eyebrow">Research Library</div>
     <h1>All Sources,<br>In One Place</h1>
-    <p>Every study and paper cited across posts and videos, organized by compound. Click through to read the primary literature directly.</p>
+    <p>Every study, paper, and reference cited across the site — organised by topic. Click any entry to read the primary literature directly.</p>
   </div>
 
   <div class="sources-wrap">
 
-    <!-- BPC-157 -->
-    <div class="source-group">
-      <div class="source-group-header">
+    <!-- ── BDNF ── -->
+    <div class="src-group">
+      <div class="src-group-hdr">
+        <h3>BDNF — Brain-Derived Neurotrophic Factor</h3>
+        <span class="src-count">25 sources</span>
+      </div>
+      <div class="src-item"><div><p class="src-title">Purification of a new neurotrophic factor from mammalian brain</p><p class="src-journal">Barde YA, Edgar D, Thoenen H — EMBO Journal, 1982</p></div><a href="#" class="src-link">No PMID</a></div>
+      <div class="src-item"><div><p class="src-title">Neurotrophin-regulated signalling pathways</p><p class="src-journal">Reichardt LF — Philosophical Transactions of the Royal Society B, 2006</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/16939974/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">A synaptic model of memory: long-term potentiation in the hippocampus</p><p class="src-journal">Bliss TV, Collingridge GL — Nature, 1993</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/8421494/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Regional distribution of brain-derived neurotrophic factor mRNA in the adult mouse brain</p><p class="src-journal">Hofer M, et al. — EMBO Journal, 1990</p></div><a href="#" class="src-link">No PMID</a></div>
+      <div class="src-item"><div><p class="src-title">BDNF and adult neurogenesis in the hippocampus</p><p class="src-journal">Bhanu SS, et al. — Neuroscience, 2019</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/28988771/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">BDNF-based synaptic repair as a disease-modifying strategy for neurodegenerative diseases</p><p class="src-journal">Lu B, et al. — Nature Reviews Neuroscience, 2013</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/23942466/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">A neurotrophic model for stress-related mood disorders</p><p class="src-journal">Duman RS, Monteggia LM — Biological Psychiatry, 2006</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/16458139/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Potential therapeutic uses of BDNF in neurological and psychiatric disorders</p><p class="src-journal">Nagahara AH, Tuszynski MH — Nature Reviews Drug Discovery, 2011</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/21358740/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Voluntary exercise protects against stress-induced decreases in BDNF protein expression</p><p class="src-journal">Adlard PA, Cotman CW — Neuroscience, 2004</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/15451236/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Sleep deprivation effects on growth factor expression in neonatal rats: a potential role for BDNF</p><p class="src-journal">Hairston IS, et al. — Journal of Sleep Research, 2004</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/15268764/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">A high-fat, refined sugar diet reduces hippocampal BDNF, neuronal plasticity, and learning</p><p class="src-journal">Molteni R, et al. — Neuroscience, 2002</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/12385840/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">A meta-analytic review of the effects of exercise on brain-derived neurotrophic factor</p><p class="src-journal">Szuhany KL, et al. — Journal of Psychiatric Research, 2015</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/25455510/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Intermittent metabolic switching, neuroplasticity and brain health</p><p class="src-journal">Mattson MP, et al. — Nature Reviews Neuroscience, 2018</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/29321682/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Short-term head-out whole-body cold-water immersion facilitates positive affect and increases interaction between large-scale brain networks</p><p class="src-journal">Yankouskaya A, et al. — Biology, 2023</p></div><a href="#" class="src-link">No PMID</a></div>
+      <div class="src-item"><div><p class="src-title">n-3 fatty acids: role in neurogenesis and neuroplasticity</p><p class="src-journal">Crupi R, et al. — Current Medicinal Chemistry, 2013</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/23317216/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Neuroinflammation, neurodegeneration, and depression</p><p class="src-journal">Hurley LL, Tizabi Y — Neurotoxicity Research, 2013</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/22961895/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Improving effects of the mushroom Yamabushitake (Hericium erinaceus) on mild cognitive impairment</p><p class="src-journal">Mori K, et al. — Phytotherapy Research, 2009</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/18844328/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">The role of BDNF and its receptors in depression and antidepressant drug action</p><p class="src-journal">Castrén E, Rantamäki T — Pharmacology & Therapeutics, 2010</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/20097224/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">BDNF release is required for the behavioral actions of ketamine</p><p class="src-journal">Lepack AE, et al. — International Journal of Neuropsychopharmacology, 2014</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/25539882/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Semax, an analogue of ACTH(4-7), regulates BDNF and trkB expression in the rat hippocampus</p><p class="src-journal">Dolotov OV, et al. — Journal of Neurochemistry, 2006</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/16978244/" target="_blank" class="src-link">PubMed ↗</a></div>
+    </div>
+
+    <!-- ── SSRIs & SNRIs ── -->
+    <div class="src-group">
+      <div class="src-group-hdr">
+        <h3>SSRIs & SNRIs</h3>
+        <span class="src-count">14 sources</span>
+      </div>
+      <div class="src-item"><div><p class="src-title">Biogenic amine transporters: regulation in flux</p><p class="src-journal">Blakely RD, Bauman AL — Current Opinion in Neurobiology, 2000</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/10753810/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Current advances and trends in the treatment of depression</p><p class="src-journal">Blier P, de Montigny C — Trends in Pharmacological Sciences, 1994</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/8165861/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Serotonin and depression: a disconnect between the advertisements and the scientific literature</p><p class="src-journal">Lacasse JR, Leo J — PLoS Medicine, 2005</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/16268945/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">The serotonin theory of depression: a systematic umbrella review of the evidence</p><p class="src-journal">Moncrieff J, et al. — Molecular Psychiatry, 2022</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/35854107/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Is mood chemistry?</p><p class="src-journal">Castrén E — Nature Reviews Neuroscience, 2005</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/16136171/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">The importance of norepinephrine in depression</p><p class="src-journal">Moret C, Briley M — Neuropsychiatric Disease and Treatment, 2011</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/21750623/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Effects of antidepressants on cognitive function in patients with major depressive disorder</p><p class="src-journal">Keefe RS, et al. — CNS Spectrums, 2014</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/24524566/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Cognitive deficits and functional outcomes in major depressive disorder</p><p class="src-journal">McIntyre RS, et al. — Canadian Journal of Psychiatry, 2013</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/24428444/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Emotional side-effects of selective serotonin reuptake inhibitors: qualitative study</p><p class="src-journal">Price J, et al. — British Journal of Psychiatry, 2009</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/19407277/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Antidepressant drug treatment and hippocampal neurogenesis</p><p class="src-journal">Sheline YI, et al. — Dialogues in Clinical Neuroscience, 2011</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/21485748/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Withdrawal symptoms after selective serotonin reuptake inhibitor discontinuation: a systematic review</p><p class="src-journal">Fava GA, et al. — Psychotherapy and Psychosomatics, 2015</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/25721705/" target="_blank" class="src-link">PubMed ↗</a></div>
+    </div>
+
+    <!-- ── AMPHETAMINES & METHYLPHENIDATE ── -->
+    <div class="src-group">
+      <div class="src-group-hdr">
+        <h3>Amphetamines & Methylphenidate</h3>
+        <span class="src-count">15 sources</span>
+      </div>
+      <div class="src-item"><div><p class="src-title">Mechanisms of neurotransmitter release by amphetamines: a review</p><p class="src-journal">Sulzer D, et al. — Progress in Neurobiology, 2005</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/15755001/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">New insights into the mechanism of action of amphetamines</p><p class="src-journal">Fleckenstein AE, et al. — Annual Review of Pharmacology and Toxicology, 2007</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/17209801/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Monoamine transporters and psychostimulant drugs</p><p class="src-journal">Rothman RB, Baumann MH — European Journal of Pharmacology, 2003</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/12573358/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Amphetamine, past and present — a pharmacological and clinical perspective</p><p class="src-journal">Heal DJ, et al. — Journal of Psychopharmacology, 2013</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/23539642/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">The pharmacology of amphetamine and methylphenidate: Relevance to the neurobiology of ADHD</p><p class="src-journal">Faraone SV — Neuroscience & Biobehavioral Reviews, 2018</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/29428394/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Mechanism of action of stimulants in attention-deficit/hyperactivity disorder</p><p class="src-journal">Stahl SM — Journal of Clinical Psychiatry, 2010</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/20923621/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Prescription stimulants' effects on healthy inhibitory control, working memory, and episodic memory: a meta-analysis</p><p class="src-journal">Ilieva IP, et al. — Journal of Cognitive Neuroscience, 2015</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/25591060/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Catecholamine influences on dorsolateral prefrontal cortical networks</p><p class="src-journal">Arnsten AF — Biological Psychiatry, 2011</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/21571244/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Abuse of amphetamines and structural abnormalities in the brain</p><p class="src-journal">Berman SM, et al. — Annals of the New York Academy of Sciences, 2008</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/18997880/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">European consensus statement on diagnosis and treatment of adult ADHD</p><p class="src-journal">Kooij SJ, et al. — BMC Psychiatry, 2010</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/20942954/" target="_blank" class="src-link">PubMed ↗</a></div>
+    </div>
+
+    <!-- ── MODAFINIL & ARMODAFINIL ── -->
+    <div class="src-group">
+      <div class="src-group-hdr">
+        <h3>Modafinil & Armodafinil</h3>
+        <span class="src-count">11 sources</span>
+      </div>
+      <div class="src-item"><div><p class="src-title">The unique profile of modafinil: investigation of neurochemical and behavioral effects in comparison with methylphenidate and amphetamine</p><p class="src-journal">Mereu M, et al. — Behavioural Pharmacology, 2013</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/23873088/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Evidence for the involvement of dopamine transporters in behavioral stimulant effects of modafinil</p><p class="src-journal">Zolkowska D, et al. — Journal of Pharmacology and Experimental Therapeutics, 2009</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/19074687/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Modafinil increases histamine release in the anterior hypothalamus of rats</p><p class="src-journal">Ishizuka T, et al. — Neuroscience Letters, 2003</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/12527051/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Effects of modafinil on dopamine and dopamine transporters in the male human brain</p><p class="src-journal">Volkow ND, et al. — JAMA, 2009</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/19318655/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Clinical pharmacokinetic profile of modafinil</p><p class="src-journal">Robertson P Jr, Hellriegel ET — Clinical Pharmacokinetics, 2003</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/12793839/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Armodafinil and modafinil have substantially different pharmacokinetic profiles despite having the same terminal half-lives</p><p class="src-journal">Darwish M, et al. — Clinical Drug Investigation, 2009</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/19275787/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Modafinil for cognitive neuroenhancement in healthy non-sleep-deprived subjects: a systematic review</p><p class="src-journal">Battleday RM, Brem AK — European Neuropsychopharmacology, 2015</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/26381811/" target="_blank" class="src-link">PubMed ↗</a></div>
+    </div>
+
+    <!-- ── CAFFEINE & ADENOSINE ── -->
+    <div class="src-group">
+      <div class="src-group-hdr">
+        <h3>Caffeine & Adenosine</h3>
+        <span class="src-count">8 sources</span>
+      </div>
+      <div class="src-item"><div><p class="src-title">Actions of caffeine in the brain with special reference to factors that contribute to its widespread use</p><p class="src-journal">Fredholm BB, et al. — Pharmacological Reviews, 1999</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/10353166/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Adenosine, energy metabolism and sleep homeostasis</p><p class="src-journal">Porkka-Heiskanen T, Kalinchuk AV — Sleep Medicine Reviews, 2011</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/20970361/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Contribution of the circadian pacemaker and the sleep homeostat to sleep propensity, sleep structure, electroencephalographic slow waves, and sleep spindle activity in humans</p><p class="src-journal">Dijk DJ, Czeisler CA — Journal of Neuroscience, 1995</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/7869090/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Is caffeine a cognitive enhancer?</p><p class="src-journal">Nehlig A — Journal of Alzheimer's Disease, 2010</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/20182035/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">An update on the mechanisms of the psychostimulant effects of caffeine</p><p class="src-journal">Ferre S — Journal of Neurochemistry, 2008</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/18088379/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Caffeine stimulation of cortisol secretion across the waking hours in relation to caffeine intake levels</p><p class="src-journal">Lovallo WR, et al. — Psychosomatic Medicine, 2005</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/16079384/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Genetics of caffeine consumption and responses to caffeine</p><p class="src-journal">Yang A, et al. — Psychopharmacology, 2010</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/19997722/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Caffeine withdrawal: a parametric analysis of caffeine dosing conditions</p><p class="src-journal">Evans SM, Griffiths RR — Journal of Pharmacology and Experimental Therapeutics, 1999</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/10543696/" target="_blank" class="src-link">PubMed ↗</a></div>
+    </div>
+
+    <!-- ── OREXIN / WAKEFULNESS SYSTEM ── -->
+    <div class="src-group">
+      <div class="src-group-hdr">
+        <h3>Orexin & Wakefulness System</h3>
+        <span class="src-count">3 sources</span>
+      </div>
+      <div class="src-item"><div><p class="src-title">Neurons containing hypocretin (orexin) project to multiple neuronal systems</p><p class="src-journal">Peyron C, et al. — Journal of Neuroscience, 1998</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/9742133/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Reduced number of hypocretin neurons in human narcolepsy</p><p class="src-journal">Thannickal TC, et al. — Neuron, 2000</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/11163271/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">The neural circuit of orexin (hypocretin): maintaining sleep and wakefulness</p><p class="src-journal">Sakurai T — Nature Reviews Neuroscience, 2007</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/17299454/" target="_blank" class="src-link">PubMed ↗</a></div>
+    </div>
+
+    <!-- ── BPC-157 ── -->
+    <div class="src-group">
+      <div class="src-group-hdr">
         <h3>BPC-157</h3>
-        <span class="source-count">12 sources</span>
+        <span class="src-count">8 sources</span>
       </div>
-
-      <div class="source-item">
-        <div>
-          <p class="source-title">Brain-gut Axis and Pentadecapeptide BPC 157: Theoretical and Practical Implications</p>
-          <p class="source-journal">Sikiric P, et al. — Current Neuropharmacology, 2016</p>
-        </div>
-        <a href="https://pubmed.ncbi.nlm.nih.gov/26813123/" target="_blank" rel="noopener">PubMed ↗</a>
-      </div>
-
-      <div class="source-item">
-        <div>
-          <p class="source-title">The promoting effect of pentadecapeptide BPC 157 on tendon healing involves tendon outgrowth, cell survival, and cell migration</p>
-          <p class="source-journal">Chang CH, et al. — Journal of Applied Physiology, 2011</p>
-        </div>
-        <a href="https://pubmed.ncbi.nlm.nih.gov/21030672/" target="_blank" rel="noopener">PubMed ↗</a>
-      </div>
-
-      <div class="source-item">
-        <div>
-          <p class="source-title">Pentadecapeptide BPC 157 (PL 14736) improves ligament healing in the rat</p>
-          <p class="source-journal">Cerovecki T, et al. — Journal of Orthopaedic Research, 2010</p>
-        </div>
-        <a href="https://pubmed.ncbi.nlm.nih.gov/19764032/" target="_blank" rel="noopener">PubMed ↗</a>
-      </div>
-
-      <div class="source-item">
-        <div>
-          <p class="source-title">Gastric pentadecapeptide body protection compound BPC 157 and its role in accelerating musculoskeletal soft tissue healing</p>
-          <p class="source-journal">Gwyer D, et al. — Cell and Tissue Research, 2019</p>
-        </div>
-        <a href="https://pubmed.ncbi.nlm.nih.gov/30411313/" target="_blank" rel="noopener">PubMed ↗</a>
-      </div>
-
+      <div class="src-item"><div><p class="src-title">Brain-gut Axis and Pentadecapeptide BPC 157: Theoretical and Practical Implications</p><p class="src-journal">Sikiric P, et al. — Current Neuropharmacology, 2016</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/26813123/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">The promoting effect of pentadecapeptide BPC 157 on tendon healing involves tendon outgrowth, cell survival, and cell migration</p><p class="src-journal">Chang CH, et al. — Journal of Applied Physiology, 2011</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/21030672/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Pentadecapeptide BPC 157 improves ligament healing in the rat</p><p class="src-journal">Cerovecki T, et al. — Journal of Orthopaedic Research, 2010</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/19764032/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Gastric pentadecapeptide body protection compound BPC 157 and its role in accelerating musculoskeletal soft tissue healing</p><p class="src-journal">Gwyer D, et al. — Cell and Tissue Research, 2019</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/30411313/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Stable Gastric Pentadecapeptide BPC 157: novel therapy in gastrointestinal tract</p><p class="src-journal">Sikiric P, et al. — Current Pharmaceutical Design, 2011</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/21303341/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">BPC 157 reversed amphetamine-induced behavior disturbances</p><p class="src-journal">Sikiric P, et al. — Journal of Physiology and Pharmacology, 2002</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/12120920/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Novel cytoprotective mediator, stable gastric pentadecapeptide BPC 157</p><p class="src-journal">Sikiric P, et al. — Current Pharmaceutical Design, 2018</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/28699503/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Stability, safety and efficacy of pentadecapeptide BPC 157 in animal studies</p><p class="src-journal">Sikiric P, et al. — Current Medicinal Chemistry, 2017</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/24359166/" target="_blank" class="src-link">PubMed ↗</a></div>
     </div>
 
-    <!-- Semax / Selank -->
-    <div class="source-group">
-      <div class="source-group-header">
-        <h3>Semax / Selank</h3>
-        <span class="source-count">8 sources</span>
+    <!-- ── SEMAX & SELANK ── -->
+    <div class="src-group">
+      <div class="src-group-hdr">
+        <h3>Semax & Selank</h3>
+        <span class="src-count">4 sources</span>
       </div>
-
-      <div class="source-item">
-        <div>
-          <p class="source-title">The nootropic and neuroprotective effects of Semax in rodent models of ischemia</p>
-          <p class="source-journal">Dolotov OV, et al. — Bulletin of Experimental Biology and Medicine, 2006</p>
-        </div>
-        <a href="https://pubmed.ncbi.nlm.nih.gov/17369878/" target="_blank" rel="noopener">PubMed ↗</a>
-      </div>
-
-      <div class="source-item">
-        <div>
-          <p class="source-title">Selank and its fragments affect the expression of genes involved in the regulation of the GABA system</p>
-          <p class="source-journal">Zolotarev YA, et al. — Doklady Biochemistry and Biophysics, 2006</p>
-        </div>
-        <a href="https://pubmed.ncbi.nlm.nih.gov/16913362/" target="_blank" rel="noopener">PubMed ↗</a>
-      </div>
-
+      <div class="src-item"><div><p class="src-title">The nootropic and neuroprotective effects of Semax in rodent models of ischemia</p><p class="src-journal">Dolotov OV, et al. — Bulletin of Experimental Biology and Medicine, 2006</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/17369878/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Semax, an analogue of ACTH(4-7), regulates BDNF and trkB expression in the rat hippocampus</p><p class="src-journal">Dolotov OV, et al. — Journal of Neurochemistry, 2006</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/16978244/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Selank and its fragments affect the expression of genes involved in the regulation of the GABA system</p><p class="src-journal">Zolotarev YA, et al. — Doklady Biochemistry and Biophysics, 2006</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/16913362/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Anxiolytic effects of Selank in an animal model of anxiety</p><p class="src-journal">Semenova TP, et al. — Bulletin of Experimental Biology and Medicine, 2010</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/21166617/" target="_blank" class="src-link">PubMed ↗</a></div>
     </div>
 
-    <!-- Retatrutide -->
-    <div class="source-group">
-      <div class="source-group-header">
+    <!-- ── RETATRUTIDE ── -->
+    <div class="src-group">
+      <div class="src-group-hdr">
         <h3>Retatrutide</h3>
-        <span class="source-count">6 sources</span>
+        <span class="src-count">3 sources</span>
       </div>
-
-      <div class="source-item">
-        <div>
-          <p class="source-title">Triple hormone receptor agonist retatrutide for metabolic diseases — a Phase 2 trial</p>
-          <p class="source-journal">Jastreboff AM, et al. — New England Journal of Medicine, 2023</p>
-        </div>
-        <a href="https://pubmed.ncbi.nlm.nih.gov/37366315/" target="_blank" rel="noopener">PubMed ↗</a>
-      </div>
-
-      <div class="source-item">
-        <div>
-          <p class="source-title">Retatrutide, a GIP, GLP-1, and glucagon receptor agonist for weight management: a systematic review</p>
-          <p class="source-journal">Nauck MA, D'Alessio DA. — The Lancet Diabetes & Endocrinology, 2023</p>
-        </div>
-        <a href="https://pubmed.ncbi.nlm.nih.gov/37591296/" target="_blank" rel="noopener">PubMed ↗</a>
-      </div>
-
+      <div class="src-item"><div><p class="src-title">Triple hormone receptor agonist retatrutide for metabolic diseases — a Phase 2 trial</p><p class="src-journal">Jastreboff AM, et al. — New England Journal of Medicine, 2023</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/37366315/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Retatrutide, a GIP, GLP-1, and glucagon receptor agonist for weight management</p><p class="src-journal">Nauck MA, D'Alessio DA — The Lancet Diabetes & Endocrinology, 2023</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/37591296/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Incretin-based therapies for type 2 diabetes mellitus</p><p class="src-journal">Drucker DJ, Nauck MA — The Lancet, 2006</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/17097983/" target="_blank" class="src-link">PubMed ↗</a></div>
     </div>
 
-    <!-- Melanotan II -->
-    <div class="source-group">
-      <div class="source-group-header">
+    <!-- ── MELANOTAN II ── -->
+    <div class="src-group">
+      <div class="src-group-hdr">
         <h3>Melanotan II</h3>
-        <span class="source-count">5 sources</span>
+        <span class="src-count">4 sources</span>
       </div>
-
-      <div class="source-item">
-        <div>
-          <p class="source-title">Melanocortin receptor agonists, penile erection, and sexual motivation: human studies with Melanotan II</p>
-          <p class="source-journal">Wessells H, et al. — International Journal of Impotence Research, 2000</p>
-        </div>
-        <a href="https://pubmed.ncbi.nlm.nih.gov/10845762/" target="_blank" rel="noopener">PubMed ↗</a>
-      </div>
-
-      <div class="source-item">
-        <div>
-          <p class="source-title">Melanotan-II: a review of its use in the treatment of sexual dysfunction</p>
-          <p class="source-journal">King SH, et al. — Future Medicinal Chemistry, 2007</p>
-        </div>
-        <a href="https://pubmed.ncbi.nlm.nih.gov/21428804/" target="_blank" rel="noopener">PubMed ↗</a>
-      </div>
-
+      <div class="src-item"><div><p class="src-title">Melanocortin receptor agonists, penile erection, and sexual motivation: human studies with Melanotan II</p><p class="src-journal">Wessells H, et al. — International Journal of Impotence Research, 2000</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/10845762/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Melanotan-II: a review of its use in the treatment of sexual dysfunction</p><p class="src-journal">King SH, et al. — Future Medicinal Chemistry, 2007</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/21428804/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Melanocortin-4 receptor agonists as novel treatments for obesity and type 2 diabetes</p><p class="src-journal">Wikberg JE, Mutulis F — Nature Reviews Drug Discovery, 2008</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/18356855/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">The central melanocortin system and the integration of short- and long-term regulators of energy homeostasis</p><p class="src-journal">Cone RD — Cell Metabolism, 2005</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/16054085/" target="_blank" class="src-link">PubMed ↗</a></div>
     </div>
 
-    <!-- Epithalon -->
-    <div class="source-group">
-      <div class="source-group-header">
+    <!-- ── EPITHALON ── -->
+    <div class="src-group">
+      <div class="src-group-hdr">
         <h3>Epithalon</h3>
-        <span class="source-count">4 sources</span>
+        <span class="src-count">3 sources</span>
       </div>
+      <div class="src-item"><div><p class="src-title">Telomere length and telomerase activity in T lymphocytes of older persons: effect of Epithalamin</p><p class="src-journal">Khavinson VKh, et al. — Bulletin of Experimental Biology and Medicine, 2003</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/12918063/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Pineal peptide preparation epithalamin increases the lifespan of fruit flies, mice and rats</p><p class="src-journal">Anisimov VN, et al. — Mechanisms of Ageing and Development, 1994</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/8152512/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Epithalon peptide induces telomerase activity and telomere elongation in human somatic cells</p><p class="src-journal">Khavinson V, et al. — Bulletin of Experimental Biology and Medicine, 2003</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/15500061/" target="_blank" class="src-link">PubMed ↗</a></div>
+    </div>
 
-      <div class="source-item">
-        <div>
-          <p class="source-title">Telomere length and telomerase activity in T lymphocytes of older persons: effect of Epithalamin</p>
-          <p class="source-journal">Khavinson VKh, et al. — Bulletin of Experimental Biology and Medicine, 2003</p>
-        </div>
-        <a href="https://pubmed.ncbi.nlm.nih.gov/12918063/" target="_blank" rel="noopener">PubMed ↗</a>
+    <!-- ── IPAMORELIN & CJC-1295 ── -->
+    <div class="src-group">
+      <div class="src-group-hdr">
+        <h3>Ipamorelin & CJC-1295</h3>
+        <span class="src-count">3 sources</span>
       </div>
-
-      <div class="source-item">
-        <div>
-          <p class="source-title">Pineal peptide preparation epithalamin increases the lifespan of fruit flies, mice and rats</p>
-          <p class="source-journal">Anisimov VN, et al. — Mechanisms of Ageing and Development, 1994</p>
-        </div>
-        <a href="https://pubmed.ncbi.nlm.nih.gov/8152512/" target="_blank" rel="noopener">PubMed ↗</a>
-      </div>
-
+      <div class="src-item"><div><p class="src-title">Ipamorelin, the first selective growth hormone secretagogue</p><p class="src-journal">Raun K, et al. — European Journal of Endocrinology, 1998</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/9849822/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">A modified GRF(1-29) with prolonged action and efficacy in stimulating GH release</p><p class="src-journal">Jetté L, et al. — Endocrinology, 2005</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/15731356/" target="_blank" class="src-link">PubMed ↗</a></div>
+      <div class="src-item"><div><p class="src-title">Growth hormone-releasing hormone and its analogs: therapeutic implications</p><p class="src-journal">Frohman LA, Jansson JO — Endocrine Reviews, 1986</p></div><a href="https://pubmed.ncbi.nlm.nih.gov/2423858/" target="_blank" class="src-link">PubMed ↗</a></div>
     </div>
 
   </div>
 
   <footer>
-    <span class="footer-logo">100XYANNI</span>
-    <span class="footer-note">All content is for educational and informational purposes only.</span>
+    <span class="f-logo">100XYANNI</span>
+    <span class="f-note">All content is for educational and informational purposes only.</span>
   </footer>
-
-  <div class="corner-tag">@100xyanni</div>
 
 </body>
 </html>
